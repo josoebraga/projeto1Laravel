@@ -1,6 +1,12 @@
-@extends('layout.app')
+@extends('layouts.app')
 @section('title', 'Editar um produto - ' . $produto->titulo)
 @section('content')
+
+<?php
+
+        #http://localhost/projeto1/server.php/produtos/1/edit
+
+?>
 
     <h1>Adicionar um produto</h1>
     <h1 class="mb-3">Editar um produto - {{$produto->titulo}}</h1>
@@ -47,5 +53,10 @@
         </div>
         <button type="submit" class="btn btn-primary">Editar Produto</button>
     </form>
+    
+                    <a href="javascript:history.go(-1)">Voltar</a>
+                    |
+                    <a href="javascript:document.location.replace('http://localhost/projeto1/server.php/produtos/' + <?php echo $produto->id ?>)">Visualizar</a>
+    
     @endsection
 
