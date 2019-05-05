@@ -15,8 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/contato', 'ContatoController'); /* php artisan make:controller ContatoController */
+Route::resource('/contato', 'ContatoController');   /* php artisan make:controller ContatoController */
 Route::resource('/produtos', 'ProdutosController'); /* php artisan make:controller ProdutosController */
+Route::post('/produtos/busca', 'ProdutosController@busca'); 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
