@@ -1,6 +1,12 @@
 <?php $__env->startSection('title', 'Editar um produto - ' . $produto->titulo); ?>
 <?php $__env->startSection('content'); ?>
 
+<?php
+
+        #http://localhost/projeto1/server.php/produtos/1/edit
+
+?>
+
     <h1>Adicionar um produto</h1>
     <h1 class="mb-3">Editar um produto - <?php echo e($produto->titulo); ?></h1>
     <?php if($message = Session::get('success')): ?>
@@ -47,7 +53,12 @@
         </div>
         <button type="submit" class="btn btn-primary">Editar Produto</button>
     </form>
+    
+                    <a href="javascript:history.go(-1)">Voltar</a>
+                    |
+                    <a href="javascript:document.location.replace('http://localhost/projeto1/server.php/produtos/' + <?php echo $produto->id ?>)">Visualizar</a>
+    
     <?php $__env->stopSection(); ?>
 
 
-<?php echo $__env->make('layout.app', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
