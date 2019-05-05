@@ -11,8 +11,24 @@ class ProdutosController extends Controller {
     public function index() {
         #http://localhost/projeto1/server.php/produtos
         $produtos = Produtos::paginate(10);
-        return view('produtos.index', array('produtos' => $produtos, 'buscar' => null,
-        'ordem' => null));
+        $maiscaro = Produtos::all()->max('preco');
+        $maisbarato = Produtos::all()->min('preco');
+        $media = Produtos::all()->avg('preco');
+        $soma = Produtos::all()->sum('preco');
+        $contagem = Produtos::all()->count();
+        $maiorDez = Produtos::where('preco','>',10)->count();
+        return view(
+                'produtos.index', 
+                array('produtos' => $produtos, 
+                'buscar' => null, 
+                'ordem' => null,
+                'maiscaro' => $maiscaro,
+                'maisbarato' => $maisbarato,
+                'mediavalor' => $media,
+                'somavalor' => $soma,
+                'contagem' => $contagem,
+                'maiorDezP' => $maiorDez
+                ));
     }
 
     public function edit($id) {
@@ -34,7 +50,7 @@ class ProdutosController extends Controller {
     }
 
     public function show($id) {
-        $produto = Produtos::find($id);
+        $produto = Produtos::with('mostrarComentarios')->find($id);
         return view('produtos.show', compact('produto', 'id'));
     }
 
